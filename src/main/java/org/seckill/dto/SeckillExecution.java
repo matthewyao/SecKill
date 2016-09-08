@@ -24,7 +24,7 @@ public class SeckillExecution {
     public SeckillExecution(long seckillId, SeckillStateEnum stateEnum, SuccessKilled successKilled) {
         this.seckillId = seckillId;
         this.state = stateEnum.getState();
-        this.stateInfo = stateInfo;
+        this.stateInfo = stateEnum.getStateInfo();
         this.successKilled = successKilled;
     }
 
@@ -64,5 +64,15 @@ public class SeckillExecution {
 
     public void setSuccessKilled(SuccessKilled successKilled) {
         this.successKilled = successKilled;
+    }
+
+    @Override
+    public String toString() {
+        return "SeckillExecution{" +
+                "seckillId=" + seckillId +
+                ", state=" + state +
+                ", stateInfo='" + stateInfo + '\'' +
+                ", successKilled=" + successKilled +
+                '}';
     }
 }

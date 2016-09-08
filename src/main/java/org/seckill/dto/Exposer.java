@@ -6,22 +6,22 @@ package org.seckill.dto;
  */
 public class Exposer {
 
-//    是否开启秒杀
+    //是否开启秒杀
     private boolean exposed;
 
-//    一种加密措施
+    //一种加密措施
     private String md5;
 
-//    ID
+    //ID
     private long seckillId;
 
-//    系统当前时间戳(毫秒)
+    //系统当前时间戳(毫秒)
     private long now;
 
-//    开始时间
+    //开始时间
     private long start;
 
-//    结束时间
+    //结束时间
     private long end;
 
     public Exposer(boolean exposed, String md5, long seckillId) {
@@ -89,5 +89,17 @@ public class Exposer {
 
     public void setEnd(long end) {
         this.end = end;
+    }
+
+    @Override
+    public String toString() {
+        return "Exposer{" +
+                "exposed=" + exposed +
+                ", md5='" + md5 + '\'' +
+                ", seckillId=" + seckillId +
+                ", now=" + now +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
     }
 }
