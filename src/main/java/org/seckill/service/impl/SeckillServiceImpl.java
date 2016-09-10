@@ -14,6 +14,7 @@ import org.seckill.service.SeckillService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
@@ -99,10 +100,12 @@ public class SeckillServiceImpl implements SeckillService {
                     //秒杀成功
                     SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);
                     return new SeckillExecution(seckillId, SeckillStateEnum.SUCCESS, successKilled);
-            }
+                }
             }
         } catch (SeckillCloseException e) {
             throw e;
+        } catch (DuplicateKeyException e) {
+            throw new RepeatKillException("seckill repeated");
         } catch (RepeatKillException e) {
             throw e;
         } catch (Exception e) {
